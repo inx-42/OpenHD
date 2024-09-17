@@ -34,7 +34,7 @@ static bool create_hotspot_connection_file(const WiFiCard& card,
       "nmcli",
       {"con add type wifi ifname", card.device_name, "con-name",
        OHD_WIFI_HOTSPOT_CONNECTION_NAME, "autoconnect no",
-       fmt::format("ssid {}", is_air ? "openhd_air" : "openhd_ground")});
+       fmt::format("ssid {}", is_air ? "TE-Tx" : "TE-Rx")});
   OHDUtil::run_command("nmcli",
                        {"con modify ", OHD_WIFI_HOTSPOT_CONNECTION_NAME,
                         " 802-11-wireless.mode ap", "802-11-wireless.band",
@@ -44,7 +44,7 @@ static bool create_hotspot_connection_file(const WiFiCard& card,
                         " wifi-sec.key-mgmt wpa-psk"});
   OHDUtil::run_command("nmcli",
                        {"con modify ", OHD_WIFI_HOTSPOT_CONNECTION_NAME,
-                        " wifi-sec.psk \"openhdopenhd\""});
+                        " wifi-sec.psk \"TE@EDS.24\""});
   OHDUtil::run_command("nmcli", {"con modify", OHD_WIFI_HOTSPOT_CONNECTION_NAME,
                                  "ipv4.addresses 192.168.3.1/24"});
   return true;
